@@ -3,9 +3,9 @@ import cv2 as cv
 import glob
 import numpy as np
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
-num = 0
+num=0
 
 while cap.isOpened():
 
@@ -38,40 +38,29 @@ while cap.isOpened():
     # Arrays to store object points and image points from all images in view of the camera
     objpoints = [] # 3d points in real world space
     imgpointsL = [] # 2d points in image plane
-    imgpointsR = [] # 2d points in image plane
-
 
     imagesLeft = sorted(glob.glob('images/stereoLeft/*.png'))
-    imagesRight = sorted(glob.glob('images/stereoRight/*.png'))
-
-    for imgLeft, imgRight in zip(imagesLeft, imagesRight):
+    for imgLeft in zip(imagesLeft):
     
         imgL = cv.imread(imgLeft)
-        imgR = cv.imread(imgRight)
         grayL = cv.cvtColor(imgL, cv.COLOR_BGR2GRAY)
-        grayR = cv.cvtColor(imgR, cv.COLOR_BGR2GRAY)
     
     
         # Find the chessbooard corners
         retL, cornersL = cv.findChessboardCorners(grayL, chessboardSize, None)
-        retR, cornersR = cv.findChessboardCorners(grayR, chessboardSize, None)
     
         # If found, add objects points, image points (after refining them)
-        if retL and retR == True:
+        if retL == True:
         
             objpoints.append(objp)
         
             cornersL = cv.cornerSubPix(grayL, cornersL, (11, 11), (-1,-1), criteria)
             imgpointsL.append(cornersL)
         
-            cornersR = cv.cornerSubPix(grayR, cornersR, (11, 11), (-1,-1), criteria)
-            imgpointsL.append(cornersR)
         
             # Draw and display the corners
             cv.drawChessboardCorners(imgL, chessboardSize, cornersL, retL)
             cv.imshow('img left', imgL)
-            cv.drawChessboardCorners(imgR, chessboardSize, cornersR, retR)
-            cv.imshow('img right', imgR)
             cv.waitKey(1000)
 
 # Release and destroy all windows before termination

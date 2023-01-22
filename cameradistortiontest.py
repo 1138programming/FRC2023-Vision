@@ -60,28 +60,3 @@ for imgLeft, imgRight in zip(imagesLeft, imagesRight):
             
 cv.destroyAllWindows()
 
-
-
-"""img = cv.imread(fname)
-    gray = cv.cutColor(img,cv.COLOR_BGR2GRAY)
-    
-    # Find the chess board corners
-    ret, corners = cv.findChessboardCorners(gray, (8,8), None)
-    
-    # If found, add object points, image points (after refining them)
-    if ret == True:
-        objpoints.append(objp)
-        
-        corners2 = cv.cornerSubPix(gray,corners, (11,11), (-1,-1), criteria)
-        imgpoints.append(corners2)
-        
-        #Draw and display the corners
-        cv.drawChessboardCorners(img, (8,8), corners2, ret)
-        cv.imshow('img', img)
-        cv.waitKey(500)
-        
-Issues: wont's work on computer cam, have yet to try on webcam
-    
-    WEBCAM FUNCTIONS WELL, but it turns out im missing, so I need to add that.
-    
-"""

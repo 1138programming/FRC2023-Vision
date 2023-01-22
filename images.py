@@ -2,8 +2,11 @@ import cv2
 import cv2 as cv
 import glob
 import numpy as np
+import os
 
 cap = cv2.VideoCapture(0)
+	
+
 
 num=0
 
@@ -16,8 +19,18 @@ while cap.isOpened():
     if k == 27:
         break
     elif k == ord('s'): # wait for 's' key to save and exit
+
         cv2.imwrite('images/stereoLeft/imageL' + str(num) + '.png', img)
-        print("images saved!")
+        cv2.imshow("Distortion photo", img)
+        cv2.waitKey(6000)
+        cv2.destroyWindow("Distortion photo")
+        result=cv2.imwrite('images/stereoLeft/imageL' + str(num) + '.png', img)
+        if result==True:
+            print("File saved successfully")
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            cv2.imshow('Gray image', gray)
+        else:
+            print("ERROR")
         num += 1
 
     cv2.imshow('Img 1',img)
@@ -41,7 +54,7 @@ while cap.isOpened():
 
     imagesLeft = sorted(glob.glob('images/stereoLeft/*.png'))
     for imgLeft in zip(imagesLeft):
-    
+        
         imgL = cv.imread(imgLeft)
         grayL = cv.cvtColor(imgL, cv.COLOR_BGR2GRAY)
     

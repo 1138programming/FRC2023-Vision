@@ -2,7 +2,7 @@ import pupil_apriltags as apriltag
 import cv2
 import numpy
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 at_detector = apriltag.Detector(families='tag36h11')
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 

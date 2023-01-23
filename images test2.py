@@ -6,8 +6,6 @@ import os
 
 cap = cv2.VideoCapture(0)
 	
-
-
 num=0
 
 while cap.isOpened():

@@ -23,10 +23,11 @@ while cap.isOpened():
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         cv2.imwrite('images/stereoLeft/imageL' + str(num) + '.png', gray)
         cv2.imshow("Distortion photo", img)
-        cv2.imshow("Gray Distortion photo", gray)
+        cv2.imshow("Gray Distortion", gray)
         cv2.waitKey(6000)
         cv2.destroyWindow("Distortion photo")
-        result=cv2.imwrite("Gray Distortion photo" + str(num) + '.png', gray)
+        cv2.destroyWindow("Gray Distortion")
+        result=cv2.imwrite("Gray Distortion" + str(num) + '.png', gray)
         if result==True:
             print("File saved successfully")
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -35,7 +36,7 @@ while cap.isOpened():
             print("ERROR")
         num += 1
 
-    cv2.imshow('Img 1',img)
+    cv2.imshow('Test Cam',img)
     chessboardSize = (8,8)
     frameSize = (640,480)
 

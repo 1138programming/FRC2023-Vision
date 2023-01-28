@@ -4,6 +4,7 @@ import glob
 import numpy as np
 import os
 
+
 cap = cv2.VideoCapture(0)
 	
 

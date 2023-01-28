@@ -45,7 +45,7 @@ while cap.isOpened():
         if result==True:
             print("File saved successfully")
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            cv2.waitKey(6000)
+            cv2.waitKey(1000)
             if ret == True:
         
                 objpoints.append(objp)

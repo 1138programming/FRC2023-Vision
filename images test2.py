@@ -29,7 +29,9 @@ while cap.isOpened():
         if result==True:
             print("File saved successfully")
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            cv2.imshow('Gray image', gray)
+            cv2.imshow('Gray Image', gray)
+            cv2.waitKey(6000)
+            cv2.destroyWindow('Gray Image')
         else:
             print("ERROR")
         num += 1

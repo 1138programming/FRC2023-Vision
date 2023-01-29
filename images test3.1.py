@@ -41,23 +41,21 @@ while cap.isOpened():
         cv2.imwrite('images/stereoLeft/imageL' + str(num) + '.png', gray)
         cv2.imshow("Distortion photo", img)
         cv2.imshow("Gray Distortion", gray)
+        objpoints.append(objp)
+        # corners = cv.cornerSubPix(gray, corners, (11, 11), (-1,-1), criteria)
+        imgpoints.append(corners)
+        # Draw and display the corners
+        cv.drawChessboardCorners(img, chessboardSize, corners, ret)
+        cv.imshow('img left', gray)
+        cv2.imwrite('img left' + str(chessboardSize) + str(corners) + str(ret) + str(num) + '.png', gray)
+        cv.waitKey(1000)
+        cv.destroyWindow('img left')
         result=cv2.imwrite("Gray Distortion" + str(num) + '.png', gray)
         if result==True:
             print("File saved successfully")
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            cv2.waitKey(1000)
-            if ret == True:
-        
-                objpoints.append(objp)
-        
-                corners = cv.cornerSubPix(gray, corners, (11, 11), (-1,-1), criteria)
-                imgpoints.append(corners)
-        
-        
-                # Draw and display the corners
-                cv.drawChessboardCorners(img, chessboardSize, corners, ret)
-                cv.imshow('img left', img)
-                cv.waitKey(1000)
+            cv2.waitKey(6000)
+         
         else:
             print("ERROR")
         num += 1

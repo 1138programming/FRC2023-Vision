@@ -38,6 +38,7 @@ while cap.isOpened():
         
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         ret, corners = cv.findChessboardCorners(gray, chessboardSize, None)
+        draw = cv.drawChessboardCorners(img, chessboardSize, corners, ret)
         cv2.imwrite('images/stereoLeft/imageL' + str(num) + '.png', gray)
         cv2.imshow("Distortion photo", img)
         cv2.imshow("Gray Distortion", gray)
@@ -45,7 +46,7 @@ while cap.isOpened():
         # corners = cv.cornerSubPix(gray, corners, (11, 11), (-1,-1), criteria)
         imgpoints.append(corners)
         # Draw and display the corners
-        cv.drawChessboardCorners(img, chessboardSize, corners, ret)
+        
         cv.imshow('img left', gray)
         cv2.imwrite('img left' + str(chessboardSize) + str(corners) + str(ret) + str(num) + '.png', gray)
         cv.waitKey(1000)

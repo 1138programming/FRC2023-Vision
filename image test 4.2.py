@@ -2,15 +2,19 @@ import cv2
 import cv2 as cv
 import glob
 import numpy as np
-import os
 
 cap = cv2.VideoCapture(0)
-	
+
 num=0
 
 chessboardSize = (7,7)
 frameSize = (640,480)
 
+# Enter the number of inside corners in x
+nx = 7
+
+# Enter the number of inside corners in y
+ny = 7
 
 # termination criteria
 criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
@@ -27,45 +31,38 @@ objpoints = [] # 3d points in real world space
 imgpoints = [] # 2d points in image plane
 
 while cap.isOpened():
-
     succes1, img = cap.read()
-
+    
     k = cv2.waitKey(5)
-
+    
     if k == 27:
         break
     elif k == ord('s'): # wait for 's' key to save and exit
         
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        ret, corners = cv.findChessboardCorners(gray, chessboardSize, None)
-        cv2.imwrite('images/stereoLeft/imageL' + str(num) + '.png', gray)
+        ret, corners = cv.findChessboardCorners(gray, chessboardSize, (nx, ny), None)
         cv2.imshow("Distortion photo", img)
         cv2.imshow("Gray Distortion", gray)
-        objpoints.append(objp)
-        # corners = cv.cornerSubPix(gray, corners, (11, 11), (-1,-1), criteria)
-        imgpoints.append(corners)
-        # Draw and display the corners
-        cv.drawChessboardCorners(img, chessboardSize, corners, ret)
-        cv.imshow('img left', gray)
-        cv2.imwrite('img left' + str(chessboardSize) + str(corners) + str(ret) + str(num) + '.png', gray)
-        cv.waitKey(1000)
-        cv.destroyWindow('img left')
-        result=cv2.imwrite("Gray Distortion" + str(num) + '.png', gray)
-        if result==True:
+        cv2.waitKey(6000)
+        cv2.destroyWindow("Distortion photo")
+        cv2.destroyWindow("Gray Distortion")
+        cv2.waitKey(1000)
+        
+        draw = cv.drawChessboardCorners(gray, chessboardSize, corners, ret)
+        result = cv2.imwrite("Gray Distortion" + str(num) + '.jpg', gray)
+        if result == True:
+            cv2.imwrite("Gray Distortion" + str(num) + '.png', draw)
             print("File saved successfully")
-            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             cv2.waitKey(6000)
-         
+            
         else:
             print("ERROR")
         num += 1
         cv2.waitKey(6000)
-        cv2.destroyWindow("Distortion photo")
-        cv2.destroyWindow("Gray Distortion")
         
-    cv2.imshow('Test Cam',img)
-
+    cv2.imshow('Test Cam', img)
+    
 # Release and destroy all windows before termination
 cap.release()
 
-cv2.destroyAllWindows()
+cv2.destroyAllWindows

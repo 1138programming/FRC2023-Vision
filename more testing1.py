@@ -1,3 +1,4 @@
+import numpy as np
 import cv2
 import glob
 
@@ -7,7 +8,7 @@ nx = 8
 #Enter the number of inside corners in y
 ny = 8
 # Make a list of calibration images
-chess_images = glob.glob('./camera_cal/cal*.jpg')
+chess_images = glob.glob('Gray Distortion0.png')
 # Select any index to grab an image from the list
 for i in range(len(chess_images)):
     # Read in the image

@@ -40,7 +40,7 @@ while cap.isOpened():
     elif k == ord('s'): # wait for 's' key to save and exit
         
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        ret, corners = cv.findChessboardCorners(gray, chessboardSize, (nx, ny), None)
+        ret, corners = cv2.findChessboardCorners(gray, chessboardSize, cv2.CALIB_CB_ADAPTIVE_THRESH + cv2.CALIB_CB_FAST_CHECK + cv2.CALIB_CB_NORMALIZE_IMAGE)
         cv2.imshow("Distortion photo", img)
         cv2.imshow("Gray Distortion", gray)
         cv2.waitKey(6000)
@@ -48,7 +48,7 @@ while cap.isOpened():
         cv2.destroyWindow("Gray Distortion")
         cv2.waitKey(1000)
         
-        draw = cv.drawChessboardCorners(gray, chessboardSize, corners, ret)
+        draw = cv.drawChessboardCorners(img, chessboardSize, corners, ret)
         result = cv2.imwrite("Gray Distortion" + str(num) + '.jpg', gray)
         if result == True:
             cv2.imwrite("Gray Distortion" + str(num) + '.png', draw)

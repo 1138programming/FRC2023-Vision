@@ -4,7 +4,9 @@ import cv2
 import numpy as np
 import os
 import glob
- 
+
+num = 8
+
 # Defining the dimensions of checkerboard
 CHECKERBOARD = (7,7)
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
@@ -21,7 +23,7 @@ objp[0,:,:2] = np.mgrid[0:CHECKERBOARD[0], 0:CHECKERBOARD[1]].T.reshape(-1, 2)
 prev_img_shape = None
  
 # Extracting path of individual image stored in a given directory
-images = glob.glob('Gray Distortion0.jpg')
+images = glob.glob('Gray Image8.png')
 for fname in images:
     img = cv2.imread(fname)
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
@@ -35,7 +37,7 @@ for fname in images:
     them on the images of checker board
     """
     if ret == True:
-        print("YAY")
+        print("File Saved Successfully")
         objpoints.append(objp)
         # refining pixel coordinates for given 2d points.
         corners2 = cv2.cornerSubPix(gray, corners, (11,11),(-1,-1), criteria)
@@ -45,8 +47,14 @@ for fname in images:
         # Draw and display the corners
         img = cv2.drawChessboardCorners(img, CHECKERBOARD, corners2, ret)
      
-    cv2.imshow('img',img)
-    cv2.waitKey(0)
+        cv2.imshow("Final Image",img)
+        cv2.imwrite("Final Image" + str(num) + '.png', img)
+    
+    else:
+        print("ERROR")
+    num += 1
+    
+    cv2.waitKey(6000)
  
 cv2.destroyAllWindows()
  

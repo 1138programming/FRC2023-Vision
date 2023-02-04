@@ -5,7 +5,7 @@ import numpy as np
 import os
 import glob
 
-num = 8
+num = 0
 
 # Defining the dimensions of checkerboard
 CHECKERBOARD = (7,7)
@@ -23,7 +23,7 @@ objp[0,:,:2] = np.mgrid[0:CHECKERBOARD[0], 0:CHECKERBOARD[1]].T.reshape(-1, 2)
 prev_img_shape = None
  
 # Extracting path of individual image stored in a given directory
-images = glob.glob('Gray Image8.png')
+images = glob.glob('Gray Image().png') #Insert photo number in ()
 for fname in images:
     img = cv2.imread(fname)
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)

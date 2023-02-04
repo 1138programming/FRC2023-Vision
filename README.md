@@ -8,7 +8,8 @@ import numpy
 ```
 ## The Mirror we are using (For Raspberry Pi)
 We are using the mirror from Thsinghau university
-<https://mirrors.tuna.tsinghua.edu.cn/help/raspbian/> (sorry they are in Chinese)
+<https://mirrors.tuna.tsinghua.edu.cn/help/raspbian/> 
+(sorry they are in Chinese)
 ```
 deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free
 deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free

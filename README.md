@@ -18,3 +18,6 @@ deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib n
 deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-backports main contrib non-free
 deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free
 ``` 
+
+3/2/2023
+Fix the bugs on Raspberry Pi
